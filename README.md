@@ -55,8 +55,10 @@ Celem projektu była analiza danych sprzedażowych sklepu internetowego w celu i
      
  # Pliki projektu
 
-    - Online_Retail.xlsx - dane i analiza w Excelu
-    - Online_Retail_sql.csv - dane wykorzystane do analizy SQL
     - Online_Retail_sql_analysis.sql - zapytania sql
     - Analiza_Online_Retail.pdf - wersja raportu Power BI w formacie PDF
+
+# Dane źródłowe 
+
+Analiza została przeprowadzona na zbiorze danych Online Retail. Ze względu na duży rozmiar plików źródłowych Excel i CSV nie zostały bezpośrednio zamieszczone w repozytorium. Dane zostały wykorzystane lokalnie do przeprowadzenia analizy w Excelu, SQL i Power BI. 
   
