@@ -1,0 +1,67 @@
+1. Top 10 klientów według sprzedaży
+
+select "CustomerID",
+sum(cast(replace("SalesValid",',','.') as double)) as "TotalSales"
+from "Online_Retail_sql.csv"
+where "CustomerID" is not null
+group by "CustomerID"
+order by "TotalSales" desc
+limit 10;
+
+2. Średnia wartość zamówienia
+
+select avg("OrderTotal") as "AverageOrderValue"
+  from(
+  select "InvoiceNo",
+  sum(cast(replace("SalesValid",',','.') as double)) as "OrderTotal"
+  from "Online_Retail_sql.csv"
+  where left("InvoiceNo", 1) <> 'C'
+  group by "InvoiceNo"
+  ) as "Orders";
+
+3. Liczba zamówień na klienta
+
+select "CustomerID",
+  count(distinct "InvoiceNo") as "NumerOfOrders"
+  from "Online_Retail_sql.csv"
+  where "CustomerID" is not null
+  and left("InvoiceNo", 1) <> 'C'
+  group by "CustomerID"
+ order by "NumerOfOrders" desc;
+
+4. Sprzedaż według kraju
+
+select "Country",
+  sum(cast(replace("SalesValid",',','.')as double)) as "TotalSales"
+  from "Online_Retail_sql.csv"
+ group by "Country"
+ order by "TotalSales" desc;
+
+5. Top 10 produktów według sprzedaży
+
+select "Description",
+  sum(cast(replace("SalesValid",',','.')as double)) as "TotalSales"
+  from "Online_Retail_sql.csv"
+  where "Description" is not null
+ group by "Description"
+ order by "TotalSales" desc
+limit 10;
+
+6. Sprzedaż według miesiąca
+
+select right(left("InvoiceDate", 10), 7) as "Month",
+   sum(cast(replace("SalesValid",',','.')as double)) as "TotalSales"
+from "Online_Retail_sql.csv"
+group by "Month"
+order by "Month";
+
+7. Klienci z największą liczbą zamówień
+
+select "CustomerID",
+  count(distinct "InvoiceNo") as "NumerOfOrders"
+   from "Online_Retail_sql.csv"
+  where "CustomerID" is not null
+  and left("InvoiceNo", 1) <> 'C'
+group by "CustomerID"
+order by "NumerOfOrders" desc
+limit 10;
